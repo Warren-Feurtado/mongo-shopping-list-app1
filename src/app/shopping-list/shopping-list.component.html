@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="tblContain">
+        <h1>My Shopping List</h1>
+        <table>
+            <tr>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Qty
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            <tr *ngFor = "let item of items">
+                <td>
+                    {{item.item_name}}
+                </td>
+                <td>
+                    {{item.category }}
+                </td>
+                <td>
+                    {{item.quantity}}
+                </td>
+                <td>
+                    ${{item.price}} 
+                </td>
+                <td>
+                    <a routerLink="/edit/{{item._id}}">Edit</a>
+                    <a (click)="deleteItem(item._id)">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

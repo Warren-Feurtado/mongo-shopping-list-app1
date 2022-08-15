@@ -1,0 +1,25 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .tblContain{
+    width: 50%;
+    margin-top: 4vw;
+    background-color: rgb(0, 255, 106);
+}
+
+.tblContain h1{
+    text-align: center;
+}
+
+.tblContain table{
+    margin: 2vw auto;
+    border-collapse: collapse;
+}
+
+table td{
+    padding: 0.5vw 2vw;
+}
