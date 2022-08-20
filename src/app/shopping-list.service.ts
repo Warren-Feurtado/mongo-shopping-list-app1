@@ -8,7 +8,7 @@ import { ListItemModel } from './models/item.model';
 })
 export class ShoppingListService {
 
-  private Base_URL = "http://localhost:3000";
+  private Base_URL = "http://localhost:3000/items";
   private HTTP_HEADER = {
     headers: new HttpHeaders({'content-type': 'application/json'})
   };
@@ -60,5 +60,9 @@ export class ShoppingListService {
 
   deleteListItem(id: string): Observable<ListItemModel>{
     return this.http.delete<ListItemModel>(`${this.Base_URL}/${id}`)
+  }
+
+  getListItemByCategory(id: string): Observable<ListItemModel> {
+    return this.http.get<ListItemModel>(`${this.Base_URL + '/getcollections'}/${id}`)
   }
 }

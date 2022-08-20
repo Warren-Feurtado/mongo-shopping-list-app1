@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListItemModel } from '../models/item.model';
+import { ActivatedRoute } from '@angular/router';
+
 
 import { ShoppingListService } from '../shopping-list.service';
 
@@ -26,16 +28,7 @@ export class ShoppingListComponent implements OnInit {
       this.items = fetchedItems;
       console.log(fetchedItems);
     } );
-    // console.log('Items Retreived');
     
-  }
-
-  onItemDelete(){
-    return this.deletePrompt = true;
-  }
-
-  onCancelDelete(){
-    return this.deletePrompt = false;
   }
 
   deleteItem(id: any): void{

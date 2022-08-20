@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from '../shopping-list.service';
+import { CategoryService } from '../category.service';
 import { ListItemModel } from '../models/item.model';
+import { CategoryModel } from '../models/category.model';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,7 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.css']
 })
+
+
 export class AddItemComponent implements OnInit {
+
+  categories: any =  [];
 
   newItemForm = this.fb.group({
     item_name: [''],
@@ -18,7 +24,7 @@ export class AddItemComponent implements OnInit {
     quantity:['']
   });
 
-  constructor(private shoppingListService: ShoppingListService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
+  constructor(private shoppingListService: ShoppingListService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private categoryservice: CategoryService) { }
 
   addNewItem(): void{
     this.shoppingListService.createListItem(this.newItemForm.value).subscribe({
@@ -34,7 +40,15 @@ export class AddItemComponent implements OnInit {
     });
   }
 
+  fetchategories(): void{
+    this.categoryservice.getCategories().subscribe(fetchedCategories =>{
+      this.categories = fetchedCategories;
+      console.log(fetchedCategories);
+    })
+  }
+
   ngOnInit(): void {
+    this.fetchategories();
   }
 
 }

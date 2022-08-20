@@ -1,10 +1,11 @@
 const express = require('express');
 const { mongoose } = require('./lib/db');
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const cors = require('cors');
 
 //routers
-var homeRouter = require('./routes/home-route');
+var itemRouter = require('./routes/items.route');
+var categoryRouter = require('./routes/categories.route');
 
 //Express App and Middleware Setup
 var app = express();
@@ -13,7 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //routes
-app.use('/', homeRouter)
+app.use('/items', itemRouter);
+app.use('/categories', categoryRouter);
 
 //Server Port Setup
 const port = process.env.Port || 3000;

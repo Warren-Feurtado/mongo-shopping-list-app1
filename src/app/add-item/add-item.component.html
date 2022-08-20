@@ -10,7 +10,11 @@
             </div>
             <div class="inputBx">
                 <label for="">Category</label><br>
-                <input type="text" formControlName="category">
+                <select>
+                    <option value="{{category.categoryId}}" *ngFor="let category of categories">
+                        {{category.catName}}
+                    </option>
+                </select>
             </div>
             <div class="inputBx">
                 <label for="">Price</label><br>

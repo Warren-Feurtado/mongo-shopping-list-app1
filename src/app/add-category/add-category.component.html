@@ -1,0 +1,13 @@
+
+<div class="container">
+
+    <div class="formCtrl">
+        <form [formGroup]="newCategoryForm" (submit)="addNewCategory()">
+            <div class="inputBx">
+                <label for="">Category Name</label><br>
+                <input type="text" formControlName="catName">
+            </div>
+            <button>Submit</button>
+        </form>
+    </div>
+</div>

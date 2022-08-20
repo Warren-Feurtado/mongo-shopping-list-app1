@@ -14,7 +14,7 @@ export class EditItemComponent implements OnInit {
   selectedItem!: ListItemModel;
   itemEditForm = this.fb.group({
     item_name: [''],
-    category: [''],
+    categoryId: [''],
     price: [''],
     quantity:['']
   });
@@ -31,7 +31,7 @@ export class EditItemComponent implements OnInit {
       this.selectedItem = retreivedItem;
       this.itemEditForm = this.fb.group({
         item_name: [this.selectedItem.item_name],
-        category: [this.selectedItem.category],
+        categoryId: [this.selectedItem.categoryId],
         price: [this.selectedItem.price],
         quantity:[this.selectedItem.quantity]
       });

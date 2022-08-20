@@ -1,5 +1,5 @@
 const express = require('express');
-const { Item } = require('../models/item.model');
+const Item = require('../models/item.model');
 
 exports.getAllItems = async(req, res) => {
     const items = await Item.find()
@@ -33,4 +33,39 @@ exports.deleteItem = async(req, res) => {
         status: 'success',
         message: 'Item deleted'
     });
+}
+
+exports.GetCategoriesAndItems = async (req, res) => {
+    // const itemCategory = await Item.find({categoryId: req.params.id}).populate('categoryId')
+    const itemCategory = await Item.findOne({categoryId: req.params.id})
+    .populate('categoryId')
+    .exec()
+    res.status(200).json(itemCategory);
+}
+
+exports.getAllItemsWithCategory = async (req, res) => {
+    
+    try {
+        let getEverthing = await Item.aggregate([
+            { $lookup:
+              {
+                from: "categories",
+                localField: "categoryId",
+                foreignField: "_id",
+                as: "Info"
+              }
+            }
+        ]);
+        res.status(200).json({
+            status: "Success",
+            results: getEverthing.toString()
+        })
+    } catch (error) {
+        res.status(404).json({
+            status: "Fail",
+            message: err
+        })
+    }
+
+    
 }
